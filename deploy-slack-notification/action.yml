@@ -1,12 +1,13 @@
 name: 'Deploy slack notification'
 description: 'Send slack notification with deployment results'
-# In order for this to work correctly, the action should have a condition to always run:
+# In order for this to work correctly, the action should have a condition to run also if job failed:
 # ```
-# - uses: glowwVideo/github-actions/deploy-slack-notification@master                                                             |              },
-#   if: always()                                                                                                                 |              {
-#   with:                                                                                                                        |                "type": "divider"
-#     slack-webhook: '${{ secrets.SLACK_DEPLOY_WEBHOOK }}'                                                                       |              },
-#     deploy-target: '<ENVIRONMENT-NAME>'                                                                                          |              {
+# - uses: glowwVideo/github-actions/deploy-slack-notification@master
+#   if: ${{ always() && github.event_name != 'pull_request' }}
+#   with:
+#     slack-webhook: '${{ secrets.SLACK_DEPLOY_WEBHOOK }}'
+#     deploy-target: '<ENVIRONMENT-NAME>'
+# ```
 
 inputs:
   slack-webhook:
@@ -25,7 +26,7 @@ runs:
     - name: Echo input
       shell: bash
       run: |-
-        echo "deploy-target: ${{ inputs.deploy-target }}, always-notfy: ${{ inputs.always-notify }}"
+        echo "deploy-target: ${{ inputs.deploy-target }}, always-notify: ${{ inputs.always-notify }}"
 
     - name: expose some values to environment
       shell: bash
@@ -36,7 +37,7 @@ runs:
               echo "DEPLOY_MESSAGE=:100: Deploy of *$GITHUB_REPOSITORY* to *${{ inputs.deploy-target }}* environment, finished succesfully" >> $GITHUB_ENV
           else
               echo "DEPLOY_MESSAGE_ALT=:Boom: Deploy of $GITHUB_REPOSITORY to ${{ inputs.deploy-target }} environment, failed!!!!" >> $GITHUB_ENV
-              echo "DEPLOY_MESSAGE=:Boom: Deploy of *$GITHUB_REPOSITORY* to *${{ inputs.deploy-target }}* environment, finished failed!!!!" >> $GITHUB_ENV
+              echo "DEPLOY_MESSAGE=:Boom: Deploy of *$GITHUB_REPOSITORY* to *${{ inputs.deploy-target }}* environment, failed!!!!" >> $GITHUB_ENV
         fi
         echo "${{ env.DEPLOY_MESSAGE }}"
 
