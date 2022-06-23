@@ -41,7 +41,7 @@ runs:
         fi
         echo "${{ env.DEPLOY_MESSAGE }}"
 
-    - if: ${{ job.status == 'failure' || inputs.always-notify == 'true' || inputs.always-notify }}
+    - if: ${{ job.status == 'failure' || inputs.always-notify == 'true' || inputs.always-notify == true }}
       name: Send slack notification
       uses: slackapi/slack-github-action@v1.18.0
       with:
