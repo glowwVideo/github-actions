@@ -1,18 +1,17 @@
 name: Deploy to Firebase Hosting on merge
 'on':
- workflow_call:
+  workflow_call:
 
 jobs:
-  run-benchmark-test
-    steps:
+  run-benchmark-test:
      runs-on: ubuntu-latest
      steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-python@v4
-          with:
+         with:
            python-version: '3.10'
-   - name: Econ secret
-     run: echo "${{ secrets.TESTRTC_API_TOKEN}}"
+       - name: Econ secret
+         run: echo "${{ secrets.TESTRTC_API_TOKEN}}"
 #      run: python -m pip install requests
 #    - name: Run Python  benchmark tests
 #      env:
