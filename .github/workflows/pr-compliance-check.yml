@@ -2,7 +2,6 @@ name: PR compliance check
 # This job verifies that the PR's title contains an SPTL issue reference.
 # If there is no reference in the title, then it tries to deduce the ticket reference,
 # either from the branch name, or from the PR's comment.
-# In the rare cases where the PR does not have a relevant ticket, we can use 'SPTL-NA' as the ticket reference
 
 on:
   pull_request_target:
