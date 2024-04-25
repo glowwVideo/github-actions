@@ -25,7 +25,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ticketPrefix: 'SPTL-'
-          titleRegex: 'SPTL-(?<ticketNumber>\d+|NA)'
+          titleRegex: 'SPTL-(?<ticketNumber>\d+)'
           branchRegex: 'SPTL-(?<ticketNumber>\d+)'
           bodyRegex: 'SPTL-(?<ticketNumber>\d+)'
 
