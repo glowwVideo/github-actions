@@ -5,7 +5,7 @@ name: PR compliance check
 
 on:
   pull_request_target:
-    branches: [ master ]
+    branches: [master]
     types:
       - opened
       - reopened
@@ -23,8 +23,7 @@ jobs:
       - uses: glowwVideo/ticket-check-action@v0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ticketPrefix: 'SPTL-'
-          titleRegex: 'SPTL-(?<ticketNumber>\d+)'
-          branchRegex: 'SPTL-(?<ticketNumber>\d+)'
-          bodyRegex: 'SPTL-(?<ticketNumber>\d+)'
-
+          ticketPrefix: 'LEXI-'
+          titleRegex: 'LEXI-(?<ticketNumber>\d+)'
+          branchRegex: 'LEXI-(?<ticketNumber>\d+)'
+          bodyRegex: 'LEXI-(?<ticketNumber>\d+)'
